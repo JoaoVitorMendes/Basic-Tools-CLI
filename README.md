@@ -1,3 +1,4 @@
 # Basic Tools CLI
 
-Uma pequena calculadora em C, Onde feito do primeiro projeto na linguageme em C.
+A series of basic tools made in C, for own use and related studies.
+Considering that these tools are totally basic and simple.
