@@ -1,135 +1,103 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-int Menu()
+char
+line_simbolo( char simbolo )
 {
-  for( int x = 0; x < 40; x++ )
-    printf( "*" );
+  for( int i = 0; i <= 20 * 2; i++ )
+    putchar( simbolo );
 
-  printf( "\n\n1 => Adição \n" );
-  printf( "2 => Subtração\n" );
-  printf( "3 => Multiplicação\n" );
-  printf( "4 => Divisão\n" );
-  printf( "0 => Exit\n\n" );
+  putchar('\n');
 
-  for( int i = 0; i < 40; i++ )
-    printf( "*" );
-
-  return 0;
+  return simbolo;
 }
 
-int Somar()
+int
+somar( int op1, int op2, int res )
 {
-  int Ope1, Ope2, Resultado;
+  res = op1 + op2;
 
-  printf( ">> " );
-  scanf( "%i",&Ope1 );
-  printf( ">> " );
-  scanf( "%i",&Ope2 );
-
-  Resultado = Ope1 + Ope2;
-
-  printf( "\n%i + %i = %i\n\n",Ope1, Ope2,Resultado );
-
+  return res;
 }
 
-int Subt()
+int
+subtrair( int op1, int op2, int res )
 {
-  int Ope1, Ope2, Resultado;
+  res = op1 - op2;
 
-  printf( ">> " );
-  scanf( "%i",&Ope1 );
-  printf( ">> " );
-  scanf( "%i",&Ope2 );
-
-  Resultado = Ope1 - Ope2;
-
-  printf( "\n%i - %i = %i\n\n",Ope1,Ope2,Resultado );
+  return res;
 }
 
-float Mult()
+int
+multiplicar( int op1, int op2, int res )
 {
-  int Ope1, Ope2, Resultado;
-  
-  printf( ">> " );
-  scanf( "%i",&Ope1 );
-  printf( ">> " );
-  scanf( "%i",&Ope2 );
+  res = op1 * op2;
 
-  Resultado = Ope1 * Ope2;
-
-  printf( "\n %i X %i = %.0f\n\n",Ope1,Ope2, (float)Resultado );
+  return res;
 }
 
-float Divsao()
+int
+divicao( int op1, int op2, int res )
 {
-  int Ope1, Ope2, Resultado;
-  printf( ">> " );
-  scanf( "%i",&Ope1 );
-  printf( ">> " );
-  scanf( "%i",&Ope2 );
+  res = op1 / op2;
 
-  
-  if( Resultado != 0 )
+  return res;
+}
+
+
+
+int
+loop_calc_main()
+{
+  int op1,op2, escolher, res;
+  char tipo;
+
+  do
   {
-    Resultado = Ope1 / Ope2;
-    printf( "\n%i / %i = %.3f\n\n",Ope1,Ope2,(float)Resultado );
-  }
-  else
-    printf( "\nDividir por 0 é problema\n\n" );
-}
+    line_simbolo( '#' );
 
-int main()
-{
+    printf( "Bem vindo a calculadora basica!\n"    );
+    
+    line_simbolo( '#' );
 
-int Escolha;
-
-Retorno:
-  Menu();
-
-
-  do {
-    printf( "\n\nEscolha uma das operações\n" );
+    printf( "Coloque valores + tipo de operação\n" );
+    printf( "Exemplo >> 2 + 1\n"                   );
     printf( ">> " );
-    scanf( "%i",&Escolha );
+    scanf( "%i %c %i",&op1, &tipo, &op2 );
 
-  } while( Escolha > 5);
 
-   switch( Escolha )
-   {
-    case 0:
-       printf( "Good Bye!" );
-       exit( 1 );
+    switch( tipo )
+    {
+      case '+':
+      res = op1 + op2;
+      somar(op1, op2, res);
+      break;
 
-    case 1:
-       printf( "\nMande 2 Números para ser somados\n" );
-       Somar();
-       goto Retorno;
-       break;
+    case '-':
+      res = op1 - op2;
+      subtrair(op1, op2, res);
+      break;
 
-    case 2:
-       printf( "\nMande 2 Números para ser Subtraidos\n" );
-       Subt();
-       goto Retorno;
-       break;
+    case '*':
+      res = op1 * op2;
+      multiplicar(op1, op2, res);
+      break;
 
-    case 3:
-       printf( "\nMande 2 Números para ser Multiplicados\n" );
-       Mult();
-       goto Retorno;
-       break;
+    case '/':
+      res = op1 / op2;
+      divicao(op1, op2, res);
+    }
 
-    case 4:
-       printf( "\nMande 2 Números para ser dividido\n" );
-       Divsao();
-       goto Retorno;
-       break;
+    printf(">> %i\n\n", res);
 
-    default:
-       printf( "\nOpção Inválida\n" );
-       goto Retorno;
-   }
+  } while( 1 );
+
 
 
   return 0;
+}
+
+int
+main()
+{
+  loop_calc_main();
 }
